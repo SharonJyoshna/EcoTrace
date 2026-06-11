@@ -1,0 +1,246 @@
+/**
+ * EcoTrace — Carbon Footprint Platform
+ * styles.css — Global styles with accessibility and dark mode support
+ */
+
+/* ============================================================
+   CSS Reset & Custom Properties
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Brand greens */
+  --green-50: #EAF3DE;
+  --green-100: #C0DD97;
+  --green-200: #97C459;
+  --green-400: #639922;
+  --green-600: #3B6D11;
+  --green-800: #27500A;
+
+  /* Teals */
+  --teal-50: #E1F5EE;
+  --teal-100: #9FE1CB;
+  --teal-400: #1D9E75;
+  --teal-600: #0F6E56;
+  --teal-800: #085041;
+
+  /* Ambers */
+  --amber-50: #FAEEDA;
+  --amber-100: #FAC775;
+  --amber-400: #BA7517;
+  --amber-800: #633806;
+
+  /* Corals */
+  --coral-50: #FAECE7;
+  --coral-100: #F5C4B3;
+  --coral-400: #D85A30;
+  --coral-800: #4A1B0C;
+
+  /* Grays */
+  --gray-50: #F1EFE8;
+  --gray-100: #D3D1C7;
+  --gray-200: #B4B2A9;
+  --gray-400: #888780;
+  --gray-600: #5F5E5A;
+  --gray-800: #444441;
+
+  /* Blues */
+  --blue-400: #378ADD;
+
+  /* Surface */
+  --bg: #ffffff;
+  --bg2: #F8F9FA;
+  --bg3: #F1F3F0;
+
+  /* Text */
+  --text: #1a1a18;
+  --text2: #5F5E5A;
+  --text3: #888780;
+
+  /* Borders */
+  --border: rgba(0, 0, 0, 0.10);
+  --border2: rgba(0, 0, 0, 0.18);
+
+  /* Radii */
+  --radius: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Typography */
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Focus ring */
+  --focus-color: #378ADD;
+  --focus-ring: 0 0 0 3px rgba(55, 138, 221, 0.4);
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+}
+
+/* ============================================================
+   Dark Mode
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1c18;
+    --bg2: #22251f;
+    --bg3: #2a2e26;
+    --text: #e8ead4;
+    --text2: #9fa89a;
+    --text3: #6b7566;
+    --border: rgba(255, 255, 255, 0.10);
+    --border2: rgba(255, 255, 255, 0.18);
+  }
+}
+
+/* ============================================================
+   Reduced Motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg3);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--green-400);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--green-600);
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font);
+}
+
+input, select, textarea {
+  font-family: var(--font);
+  font-size: 14px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   Accessibility — Focus Styles (WCAG 2.1 AA)
+   ============================================================ */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+  box-shadow: var(--focus-ring);
+}
+
+/* ============================================================
+   Skip Link (Accessibility)
+   ============================================================ */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  background: var(--green-400);
+  color: #fff;
+  padding: var(--space-2) var(--space-4);
+  border-radius: 0 0 var(--radius) var(--radius);
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 9999;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ============================================================
+   Screen reader only utility
+   ============================================================ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   High contrast mode support
+   ============================================================ */
+@media (forced-colors: active) {
+  :root {
+    --green-400: ButtonText;
+    --border: ButtonBorder;
+    --bg: Canvas;
+    --text: CanvasText;
+  }
+
+  button {
+    border: 1px solid ButtonBorder;
+  }
+}
+
+/* ============================================================
+   Responsive containers
+   ============================================================ */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+}
+
+/* ============================================================
+   Print styles
+   ============================================================ */
+@media print {
+  nav, .skip-link { display: none; }
+  body { background: white; color: black; }
+  canvas { max-width: 100%; }
+}
