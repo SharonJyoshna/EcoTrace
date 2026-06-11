@@ -61,6 +61,8 @@ function App() {
 
 /* Mount */
 const rootEl = document.getElementById("root");
+
 if (rootEl) {
-  ReactDOM.createRoot(rootEl).render(h(App, null));
+  const root = ReactDOM.createRoot(rootEl);
+  root.render(React.createElement(App));
 }
